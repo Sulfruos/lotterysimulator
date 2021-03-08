@@ -1,0 +1,128 @@
+<!DOCTYPE HTML>
+<html>
+<body style = "background-color: #FFFF00">
+
+<h1>Lottery</h1>
+<p id="lotterystuff"></p>
+
+<script language="javascript">
+
+numbers = [0,0,0,0,0];
+user_numbers = [0,0,0,0,0];
+user_numbers = prompt("Enter 5 lottery numbers between 1 and 48, separated by commas: ").split(",");
+
+document.write("<h3>Your numbers: </h3>");
+for (i = 0; i < 5; i++)
+{
+  document.write(user_numbers[i] + " ");
+}
+ballchoice = prompt("Enter your lucky ball number, between 1 and 18:");
+document.write("</br><h3>Lottery Numbers: </h3>");
+
+
+
+for (i = 0; i < 5; i++)
+{
+  num = Math.floor(Math.random() * 48) + 1; //returns random num from 1 to 48
+  numbers[i] = num;
+}
+
+luckyBall = Math.floor(Math.random() * 18) + 1; //returns random num from 1 to 18
+numbers.sort(function(a,b) {
+  return a - b;
+});
+for (i = 0; i < 5; i++)
+{
+  document.write(numbers[i] + " ");
+}
+
+document.write("</br><h3>Your Lucky ball: </h3>" + ballchoice);
+
+document.write("</br><h3>Lottery Lucky ball: </h3>" + luckyBall + "<br><br>");
+
+//now we have numbers to compare to user_numbers, and ballchoice to compare to luckyBall
+winningCount = 0;
+for (i = 0; i < 5; i++)
+{
+  for (j = 0; j < 5; j++)
+  {
+    if (user_numbers[i] == numbers[j])
+    {
+      winningCount++;
+    }
+  }
+}
+document.write(winningCount + " out of 5 numbers matched!<br>");
+luckywin = false;
+if (ballchoice == luckyBall)
+{
+  luckywin = true;
+}
+if (luckywin)
+{
+  document.write("The lucky ball matched! Congrats!");
+}
+else
+{
+  document.write("Unfortunately, the lucky ball did not match.<br>");
+}
+
+if (luckywin)
+{
+  if (winningCount == "1")
+  {
+    document.write("You get $6!");
+  }
+  else if (winningCount == "2")
+  {
+    document.write("You get $25!");
+  }
+  else if (winningCount == "3")
+  {
+    document.write("You get $150!");
+  }
+  else if (winningCount == "4")
+  {
+    document.write("You get $5000!");
+  }
+  else if (winningCount == "5")
+  {
+    document.write("Grand prize! You get $7000 a WEEK for LIFE!")
+  }
+  else
+  {
+    document.write("You get $4!");
+  }
+}
+else
+{
+  if (winningCount == "1")
+  {
+    document.write("You get NOTHING!");
+  }
+  else if (winningCount == "2")
+  {
+    document.write("You get $3!");
+  }
+  else if (winningCount == "3")
+  {
+    document.write("You get $20!");
+  }
+  else if (winningCount == "4")
+  {
+    document.write("You get $200!");
+  }
+  else if (winningCount == "5")
+  {
+    document.write("You get $25000 a YEAR for LIFE!");
+  }
+  else
+  {
+    document.write("You get NOTHING!");
+  }
+}
+
+</script>
+
+</body>
+</html>
